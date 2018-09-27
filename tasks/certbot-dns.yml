@@ -1,0 +1,52 @@
+- name: copy dns credenteals
+  template: src="files/{{dns_plugin}}-credentials.ini"
+            dest="/var/.secrets/certbot/credentials.ini"
+            owner=root
+            group=root
+  when: use_dns_plugin
+  tags:
+    - certbot-dns
+
+- name: pull certbot dns plugin docker image
+  docker_image:
+    state: present
+    force: yes
+    name: "certbot/dns-{{dns_plugin}}:{{certbot_version}}"
+  when: use_dns_plugin
+  tags:
+    - certbot-dns
+
+- name: run certbot dns plugin image
+  docker_container:
+    name: "certbot-dns-{{dns_plugin}}"
+    image: "certbot/dns-{{dns_plugin}}:{{certbot_version}}"
+    state: started
+    restart_policy: no
+    force_kill: yes
+    cleanup: yes
+    detach: no
+    auto_remove: yes
+    volumes:
+      - "/etc/letsencrypt:/etc/letsencrypt"
+      - "/var/lib/letsencrypt:/var/lib/letsencrypt"
+      - "/var/log/letsencrypt:/var/log/letsencrypt"
+      - "/var/.secrets:/var/.secrets"
+    env:
+      AWS_CONFIG_FILE: /var/.secrets/certbot/credentials.ini
+    command: certonly --agree-tos -m {{email}} -d "{{ domains_list | join(' -d') }}" --dns-{{dns_plugin}} --dns-{{dns_plugin}}-propagation-seconds 60 --dns-{{dns_plugin}}-credentials /var/.secrets/certbot/credentials.ini --server https://acme-v02.api.letsencrypt.org/directory
+    ports:
+      - "80:80"
+      - "443:443"
+  when: use_dns_plugin
+  tags:
+    - certbot-dns
+
+- name: Add letsencrypt cronjob for cert renewal
+  become: yes
+  cron:
+    name: letsencrypt_renewal
+    special_time: monthly
+    job: docker run --rm -it --name certbot-dns-{{dns_plugin}} -v /etc/letsencrypt:/etc/letsencrypt -v /var/lib/letsencrypt:/var/lib/letsencrypt -v /var/.secrets:/var/.secrets -v /var/log/letsencrypt:/var/log/letsencrypt -e "AWS_CONFIG_FILE=/var/.secrets/certbot/credentials.ini" certbot/dns-{{dns_plugin}}:{{certbot_version}} renew
+  when: use_dns_plugin
+  tags:
+    - certbot-dns
