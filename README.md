@@ -30,22 +30,129 @@ Available variables:
 |**`dns_plugin`**|`cloudflare`|Dsn plugin that will be used with certbot (when `use_dns_plugin` is `true`), list of plugins can be found [here](https://certbot.eff.org/docs/using.html#dns-plugins)|
 |**`email`**|`Email that will be used for notifications`|Email that will be used for notifications|
 |**`domains_list`**|`- "{{ ansible_fqdn }}"`|List of domain for which you want to get a certificates|
-|**`dns_email`**|`""`|DNS email (used for Cloudflare, LuaDNS)|
-|**`dns_api_key`**|`""`|DNS api key (used for Cloudflare, CloudXNS, DNS Made Easy, NS1)|
-|**`dns_secret_key`**|`""`|DNS secret key (used for CloudXNS, DNS Made Easy)|
-|**`dns_token`**|`""`|DNS token (used for DigitalOcean, DNSimple, LuaDNS)|
-|**`dns_key`**|`""`|DNS key (used for Linode)|
-|**`dns_endpoint`**|`""`|DNS endpoint (used for OVH)|
-|**`dns_application_key`**|`""`|DNS application key (used for OVH)|
-|**`dns_application_secret`**|`""`|DNS application secret (used for OVH)|
-|**`dns_consumer_key`**|`""`|DNS consumer key (used for OVH)|
-|**`dns_server`**|`""`|Target DNS server (used for RFC 2136)|
-|**`dns_port`**|`""`|Target DNS port (used for RFC 2136)|
-|**`dns_name`**|`""`|TSIG key name (used for RFC 2136)|
-|**`dns_secret`**|`""`|TSIG key secret (used for RFC 2136)|
-|**`dns_algorithm`**|`""`|TSIG key algorithm (used for RFC 2136)|
-|**`dns_access_key_id`**|`""`|DNS access key id (used for route 53)|
-|**`dns_secret_access_key`**|`""`|DNS secret access key id (used for route 53)|
+
+
+<details><summary>Additional variables for Cloudflare</summary>
+<p>
+
+|Name|Default|Description|
+|:--:|:--:|:----------|
+|**`dns_email`**|`""`|DNS email|
+|**`dns_api_key`**|`""`|DNS api key|
+
+</p>
+</details>
+
+<details><summary>Additional variables for CloudXNS</summary>
+<p>
+
+|Name|Default|Description|
+|:--:|:--:|:----------|
+|**`dns_api_key`**|`""`|DNS api key|
+|**`dns_secret_key`**|`""`|DNS secret key|
+
+</p>
+</details>
+
+<details><summary>Additional variables for DigitalOcean</summary>
+<p>
+
+|Name|Default|Description|
+|:--:|:--:|:----------|
+|**`dns_token`**|`""`|DNS token|
+
+</p>
+</details>
+
+<details><summary>Additional variables for DNSimple</summary>
+<p>
+
+|Name|Default|Description|
+|:--:|:--:|:----------|
+|**`dns_token`**|`""`|DNS token|
+
+</p>
+</details>
+
+<details><summary>Additional variables for DNS Made Easy</summary>
+<p>
+
+|Name|Default|Description|
+|:--:|:--:|:----------|
+|**`dns_api_key`**|`""`|DNS api key|
+|**`dns_secret_key`**|`""`|DNS secret key|
+
+</p>
+</details>
+
+<details><summary>Additional variables for Linode</summary>
+<p>
+
+|Name|Default|Description|
+|:--:|:--:|:----------|
+|**`dns_key`**|`""`|DNS key|
+
+</p>
+</details>
+
+<details><summary>Additional variables for LuaDNS</summary>
+<p>
+
+|Name|Default|Description|
+|:--:|:--:|:----------|
+|**`dns_email`**|`""`|DNS email|
+|**`dns_token`**|`""`|DNS token|
+
+</p>
+</details>
+
+<details><summary>Additional variables for NS1</summary>
+<p>
+
+|Name|Default|Description|
+|:--:|:--:|:----------|
+|**`dns_api_key`**|`""`|DNS api key|
+
+</p>
+</details>
+
+<details><summary>Additional variables for OVH</summary>
+<p>
+
+|Name|Default|Description|
+|:--:|:--:|:----------|
+|**`dns_endpoint`**|`""`|DNS endpoint|
+|**`dns_application_key`**|`""`|DNS application key|
+|**`dns_application_secret`**|`""`|DNS application secret|
+|**`dns_consumer_key`**|`""`|DNS consumer key|
+
+</p>
+</details>
+
+<details><summary>Additional variables for RFC 2136</summary>
+<p>
+
+|Name|Default|Description|
+|:--:|:--:|:----------|
+|**`dns_server`**|`""`|Target DNS server|
+|**`dns_port`**|`""`|Target DNS port|
+|**`dns_name`**|`""`|TSIG key name|
+|**`dns_secret`**|`""`|TSIG key secret|
+|**`dns_algorithm`**|`""`|TSIG key algorithm|
+
+</p>
+</details>
+
+<details><summary>Additional variables for Route 53</summary>
+<p>
+
+|Name|Default|Description|
+|:--:|:--:|:----------|
+|**`dns_access_key_id`**|`""`|DNS access key id|
+|**`dns_secret_access_key`**|`""`|DNS secret access key id|
+
+</p>
+</details>
 
 ## Dependencies
 
