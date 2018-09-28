@@ -6,9 +6,9 @@
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square)](http://makeapullrequest.com)
 
 
-[![Watch on GitHub](https://img.shields.io/github/watchers/auxilincom/ansible-letsectrypt.svg?style=social&label=Watch)](https://github.com/auxilincom/ansible-letsectrypt/watchers)
-[![Star on GitHub](https://img.shields.io/github/stars/auxilincom/ansible-letsectrypt.svg?style=social&label=Stars)](https://github.com/auxilincom/ansible-letsectrypt/stargazers)
-[![Tweet](https://img.shields.io/twitter/url/https/github.com/auxilincom/ansible-letsectrypt.svg?style=social)](https://twitter.com/intent/tweet?text=I%27m%20using%20Auxilin%20components%20to%20build%20my%20next%20product%20🚀.%20Check%20it%20out:%20https://github.com/auxilincom/ansible-letsectrypt)
+[![Watch on GitHub](https://img.shields.io/github/watchers/auxilincom/ansible-letsencrypt.svg?style=social&label=Watch)](https://github.com/auxilincom/ansible-letsencrypt/watchers)
+[![Star on GitHub](https://img.shields.io/github/stars/auxilincom/ansible-letsencrypt.svg?style=social&label=Stars)](https://github.com/auxilincom/ansible-letsencrypt/stargazers)
+[![Tweet](https://img.shields.io/twitter/url/https/github.com/auxilincom/ansible-letsencrypt.svg?style=social)](https://twitter.com/intent/tweet?text=I%27m%20using%20Auxilin%20components%20to%20build%20my%20next%20product%20🚀.%20Check%20it%20out:%20https://github.com/auxilincom/ansible-letsencrypt)
 
 The ansible role for generating [letsecrypt](https://letsencrypt.org/) certificates.
 
