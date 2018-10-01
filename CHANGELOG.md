@@ -1,3 +1,7 @@
+## v0.1.2 (2018-10-01)
+
+* Fix run certbot dns container.
+
 ## v0.1.1 (2018-09-28)
 
 * Update role name.
