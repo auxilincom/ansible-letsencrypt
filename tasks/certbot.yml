@@ -29,7 +29,7 @@
       - "/etc/letsencrypt:/etc/letsencrypt"
       - "/var/lib/letsencrypt:/var/lib/letsencrypt"
       - "/var/log/letsencrypt:/var/log/letsencrypt"
-    command: certonly --standalone --agree-tos -m {{letsencrypt_email}} -d "{{ domains_list | join(' -d') }}"
+    command: certonly --standalone --agree-tos -m {{letsencrypt_email}} -d {{ domains_list | join(' -d ') }}
     ports:
       - "80:80"
       - "443:443"

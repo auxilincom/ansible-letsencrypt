@@ -1,3 +1,7 @@
+## v0.1.3 (2018-10-03)
+
+* Fix create certificates for several subdomains.
+
 ## v0.1.2 (2018-10-01)
 
 * Fix run certbot dns container.

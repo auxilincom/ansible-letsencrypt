@@ -31,7 +31,7 @@
       - "/var/.secrets:/var/.secrets"
     env:
       AWS_CONFIG_FILE: /var/.secrets/certbot/credentials.ini
-    command: certonly --agree-tos -m {{email}} -d "{{ domains_list | join(' -d') }}" --dns-{{dns_plugin}} --dns-{{dns_plugin}}-propagation-seconds 60 --dns-{{dns_plugin}}-credentials /var/.secrets/certbot/credentials.ini --server https://acme-v02.api.letsencrypt.org/directory
+    command: certonly --agree-tos -m {{email}} -d {{domains_list | join(' -d ')}} --dns-{{dns_plugin}} --dns-{{dns_plugin}}-propagation-seconds 60 --dns-{{dns_plugin}}-credentials /var/.secrets/certbot/credentials.ini --server https://acme-v02.api.letsencrypt.org/directory
     ports:
       - "80:80"
       - "443:443"
