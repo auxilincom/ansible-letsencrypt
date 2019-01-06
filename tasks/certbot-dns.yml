@@ -43,8 +43,12 @@
   become: yes
   cron:
     name: letsencrypt_renewal
-    special_time: monthly
-    job: docker run --rm -it --name certbot-dns-{{dns_plugin}} -v /etc/letsencrypt:/etc/letsencrypt -v /var/lib/letsencrypt:/var/lib/letsencrypt -v /var/.secrets:/var/.secrets -v /var/log/letsencrypt:/var/log/letsencrypt -e "AWS_CONFIG_FILE=/var/.secrets/certbot/credentials.ini" -p 80:80 -p 443:443 certbot/dns-{{dns_plugin}}:{{certbot_version}} renew
+    minute: "0"
+    hour: "0"
+    day: "*"
+    month: "*"
+    weekday: "1"
+    job: "[ $(date +%d) -le 07 ] && docker run --rm -it -v /etc/letsencrypt:/etc/letsencrypt -v /var/lib/letsencrypt:/var/lib/letsencrypt -v /var/.secrets:/var/.secrets -v /var/log/letsencrypt:/var/log/letsencrypt -p 80:80 -p 443:443 -e \"AWS_CONFIG_FILE=/var/.secrets/certbot/credentials.ini\" certbot/dns-{{dns_plugin}}:{{certbot_version}} renew --pre-hook \"service nginx stop\" --post-hook \"service nginx start\""
   when: use_dns_plugin
   tags:
     - certbot-dns
