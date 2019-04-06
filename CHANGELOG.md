@@ -1,3 +1,7 @@
+## v0.1.4 (2019-04-06)
+
+* Set Sunday for the renewal process.
+
 ## v0.1.3 (2018-10-03)
 
 * Fix create certificates for several subdomains.
