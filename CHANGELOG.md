@@ -1,3 +1,7 @@
+## v0.1.5 (2019-04-06)
+
+* Fix ansible galaxy warnings
+
 ## v0.1.4 (2019-04-06)
 
 * Set Sunday for the renewal process.

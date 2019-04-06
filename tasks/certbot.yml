@@ -1,5 +1,5 @@
 - name: Create base directories
-  file: path="{{item}}" state=directory
+  file: path="{{ item }}" state=directory
   with_items:
     - "/etc/letsencrypt"
     - "/var/lib/letsencrypt"
@@ -10,7 +10,7 @@
   docker_image:
     state: present
     force: yes
-    name: "certbot/certbot:{{certbot_version}}"
+    name: "certbot/certbot:{{ certbot_version }}"
   when: not use_dns_plugin
   tags:
     - certbot
@@ -18,7 +18,7 @@
 - name: run certbot plugin image
   docker_container:
     name: "certbot"
-    image: "certbot/certbot:{{certbot_version}}"
+    image: "certbot/certbot:{{ certbot_version }}"
     state: started
     restart_policy: no
     force_kill: yes
@@ -29,7 +29,7 @@
       - "/etc/letsencrypt:/etc/letsencrypt"
       - "/var/lib/letsencrypt:/var/lib/letsencrypt"
       - "/var/log/letsencrypt:/var/log/letsencrypt"
-    command: certonly --standalone --agree-tos -m {{letsencrypt_email}} -d {{ domains_list | join(' -d ') }}
+    command: certonly --standalone --agree-tos -m {{ letsencrypt_email }} -d {{ domains_list | join(' -d ') }}
     ports:
       - "80:80"
       - "443:443"
@@ -46,7 +46,7 @@
     day: "*"
     month: "*"
     weekday: "0"
-    job: "[ $(date +%d) -le 07 ] && service nginx stop; docker run --rm -it -v /etc/letsencrypt:/etc/letsencrypt -v /var/lib/letsencrypt:/var/lib/letsencrypt -v /var/log/letsencrypt:/var/log/letsencrypt -p 80:80 -p 443:443 certbot/certbot:{{certbot_version}} renew; service nginx start"
+    job: "[ $(date +%d) -le 07 ] && service nginx stop; docker run --rm -it -v /etc/letsencrypt:/etc/letsencrypt -v /var/lib/letsencrypt:/var/lib/letsencrypt -v /var/log/letsencrypt:/var/log/letsencrypt -p 80:80 -p 443:443 certbot/certbot:{{ certbot_version }} renew; service nginx start"
   when: not use_dns_plugin
   tags:
     - certbot

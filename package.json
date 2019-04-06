@@ -1,6 +1,6 @@
 {
   "name": "ansible-letsencrypt",
-  "version": "0.1.4",
+  "version": "0.1.5",
   "description": "The ansible role for generating letsencrypt certificates",
   "repository": {
     "type": "git",
