@@ -1,3 +1,7 @@
+## v0.1.6 (2019-04-06)
+
+* Fix ansible galaxy warnings about width of the lines
+
 ## v0.1.5 (2019-04-06)
 
 * Fix ansible galaxy warnings

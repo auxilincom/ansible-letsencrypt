@@ -46,7 +46,16 @@
     day: "*"
     month: "*"
     weekday: "0"
-    job: "[ $(date +%d) -le 07 ] && service nginx stop; docker run --rm -it -v /etc/letsencrypt:/etc/letsencrypt -v /var/lib/letsencrypt:/var/lib/letsencrypt -v /var/log/letsencrypt:/var/log/letsencrypt -p 80:80 -p 443:443 certbot/certbot:{{ certbot_version }} renew; service nginx start"
+    job: >-
+      [ $(date +%d) -le 07 ] && service nginx stop;
+      docker run --rm -it
+      -v /etc/letsencrypt:/etc/letsencrypt
+      -v /var/lib/letsencrypt:/var/lib/letsencrypt
+      -v /var/log/letsencrypt:/var/log/letsencrypt
+      -p 80:80
+      -p 443:443
+      certbot/certbot:{{ certbot_version }} renew;
+      service nginx start
   when: not use_dns_plugin
   tags:
     - certbot
