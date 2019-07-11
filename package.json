@@ -1,6 +1,6 @@
 {
   "name": "ansible-letsencrypt",
-  "version": "0.1.6",
+  "version": "0.2.0",
   "description": "The ansible role for generating letsencrypt certificates",
   "repository": {
     "type": "git",
@@ -17,6 +17,6 @@
   },
   "homepage": "https://github.com/auxilincom/ansible-letsencrypt#readme",
   "devDependencies": {
-    "all-contributors-cli": "5.4.0"
+    "all-contributors-cli": "6.7.0"
   }
 }

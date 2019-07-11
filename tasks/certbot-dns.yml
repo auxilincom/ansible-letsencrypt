@@ -3,17 +3,18 @@
             dest="/var/.secrets/certbot/credentials.ini"
             owner=root
             group=root
-  when: use_dns_plugin
+  when: use_dns_plugin|bool
   tags:
     - certbot-dns
 
 - name: pull certbot dns plugin docker image
   docker_image:
     state: present
-    force: yes
+    source: pull
+    force_source: yes
     name: "certbot/dns-{{ dns_plugin }}:{{ certbot_version }}"
     tag: "{{ certbot_version }}"
-  when: use_dns_plugin
+  when: use_dns_plugin|bool
   tags:
     - certbot-dns
 
@@ -39,7 +40,7 @@
     ports:
       - "80:80"
       - "443:443"
-  when: use_dns_plugin
+  when: use_dns_plugin|bool
   tags:
     - certbot-dns
 
@@ -53,7 +54,9 @@
     month: "*"
     weekday: "0"
     job: >-
-      [ $(date +%d) -le 07 ] && service nginx stop;
+      [ $(date +\%d) -le 07 ] &&
+      docker pull certbot/dns-{{ dns_plugin }}:{{ certbot_version }};
+      service nginx stop;
       docker run --rm -it
       -v /etc/letsencrypt:/etc/letsencrypt
       -v /var/lib/letsencrypt:/var/lib/letsencrypt
@@ -64,6 +67,6 @@
       -e "AWS_CONFIG_FILE=/var/.secrets/certbot/credentials.ini"
       certbot/dns-{{ dns_plugin }}:{{ certbot_version }} renew;
       service nginx start
-  when: use_dns_plugin
+  when: use_dns_plugin|bool
   tags:
     - certbot-dns

@@ -1,5 +1,5 @@
 # Use certbot dns provider (use this if you need wildcard sertificate) or certbot itselt.
-use_dns_plugin: false
+use_dns_plugin: no
 
 # Version of certbot or certbot dns plugin (if use_dns_plugin is true), see other versions here: https://hub.docker.com/r/certbot/certbot/tags/
 certbot_version: latest

@@ -1,3 +1,9 @@
+## v0.2.0 (2019-07-11)
+
+* Fix start of the cron job
+* Add step to pull docker image in the cron job
+* Fix ansible 2.8 warnings
+
 ## v0.1.6 (2019-04-06)
 
 * Fix ansible galaxy warnings about width of the lines

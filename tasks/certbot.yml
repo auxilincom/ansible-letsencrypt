@@ -9,9 +9,10 @@
 - name: pull certbot plugin docker image
   docker_image:
     state: present
-    force: yes
+    source: pull
+    force_source: yes
     name: "certbot/certbot:{{ certbot_version }}"
-  when: not use_dns_plugin
+  when: not use_dns_plugin|bool
   tags:
     - certbot
 
@@ -29,11 +30,14 @@
       - "/etc/letsencrypt:/etc/letsencrypt"
       - "/var/lib/letsencrypt:/var/lib/letsencrypt"
       - "/var/log/letsencrypt:/var/log/letsencrypt"
-    command: certonly --standalone --agree-tos -m {{ letsencrypt_email }} -d {{ domains_list | join(' -d ') }}
+    command: >-
+      certonly --standalone --agree-tos
+      -m {{ letsencrypt_email }}
+      -d {{ domains_list | join(' -d ') }}
     ports:
       - "80:80"
       - "443:443"
-  when: not use_dns_plugin
+  when: not use_dns_plugin|bool
   tags:
     - certbot
 
@@ -47,7 +51,9 @@
     month: "*"
     weekday: "0"
     job: >-
-      [ $(date +%d) -le 07 ] && service nginx stop;
+      [ $(date +\%d) -le 07 ] &&
+      docker pull certbot/certbot:{{ certbot_version }};
+      service nginx stop;
       docker run --rm -it
       -v /etc/letsencrypt:/etc/letsencrypt
       -v /var/lib/letsencrypt:/var/lib/letsencrypt
@@ -56,6 +62,6 @@
       -p 443:443
       certbot/certbot:{{ certbot_version }} renew;
       service nginx start
-  when: not use_dns_plugin
+  when: not use_dns_plugin|bool
   tags:
     - certbot

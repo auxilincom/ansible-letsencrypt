@@ -25,9 +25,9 @@ Available variables:
 
 |Name|Default|Description|
 |:--:|:--:|:----------|
-|**`use_dns_plugin`**|`false`|Use certbot dns provider (use this if you need wildcard sertificate) or certbot itselt.|
-|**`certbot_version`**|`latest`|# Version of certbot or certbot dns plugin (if `use_dns_plugin` is `true`), see other versions [here](https://hub.docker.com/r/certbot/certbot/tags)|
-|**`dns_plugin`**|`cloudflare`|Dsn plugin that will be used with certbot (when `use_dns_plugin` is `true`), list of plugins can be found [here](https://certbot.eff.org/docs/using.html#dns-plugins)|
+|**`use_dns_plugin`**|`no`|Use certbot dns provider (use this if you need wildcard sertificate) or certbot itselt.|
+|**`certbot_version`**|`latest`|# Version of certbot or certbot dns plugin (if `use_dns_plugin` is `yes`), see other versions [here](https://hub.docker.com/r/certbot/certbot/tags)|
+|**`dns_plugin`**|`cloudflare`|Dsn plugin that will be used with certbot (when `use_dns_plugin` is `yes`), list of plugins can be found [here](https://certbot.eff.org/docs/using.html#dns-plugins)|
 |**`email`**|`Email that will be used for notifications`|Email that will be used for notifications|
 |**`domains_list`**|`- "{{ ansible_fqdn }}"`|List of domain for which you want to get a certificates|
 
@@ -179,7 +179,7 @@ Example of the playbook file:
   become: true
   roles:
     - role: auxilincom.letsencrypt
-      use_dns_plugin: true
+      use_dns_plugin: yes
       certbot_version: v0.26.1
       dns_plugin: cloudflare
       email: ship@test.com
@@ -208,8 +208,13 @@ Thanks goes to these wonderful people ([emoji key](https://github.com/kentcdodds
 
 <!-- ALL-CONTRIBUTORS-LIST:START - Do not remove or modify this section -->
 <!-- prettier-ignore -->
-| [<img src="https://avatars2.githubusercontent.com/u/6461311?v=4" width="100px;"/><br /><sub><b>Evgeny Zhivitsa</b></sub>](https://github.com/ezhivitsa)<br />[📖](https://github.com/auxilin/ansible-letsencrypt/commits?author=ezhivitsa "Documentation") [🤔](#ideas-ezhivitsa "Ideas, Planning, & Feedback") [💻](https://github.com/auxilin/ansible-letsencrypt/commits?author=ezhivitsa "Code") | [<img src="https://avatars3.githubusercontent.com/u/681396?v=4" width="100px;"/><br /><sub><b>Andrew Orsich</b></sub>](https://github.com/anorsich)<br />[🤔](#ideas-anorsich "Ideas, Planning, & Feedback") [👀](#review-anorsich "Reviewed Pull Requests") |
-| :---: | :---: |
+<table>
+  <tr>
+    <td align="center"><a href="https://github.com/ezhivitsa"><img src="https://avatars2.githubusercontent.com/u/6461311?v=4" width="100px;" alt="Evgeny Zhivitsa"/><br /><sub><b>Evgeny Zhivitsa</b></sub></a><br /><a href="https://github.com/auxilin/ansible-letsencrypt/commits?author=ezhivitsa" title="Documentation">📖</a> <a href="#ideas-ezhivitsa" title="Ideas, Planning, & Feedback">🤔</a> <a href="https://github.com/auxilin/ansible-letsencrypt/commits?author=ezhivitsa" title="Code">💻</a></td>
+    <td align="center"><a href="https://github.com/anorsich"><img src="https://avatars3.githubusercontent.com/u/681396?v=4" width="100px;" alt="Andrew Orsich"/><br /><sub><b>Andrew Orsich</b></sub></a><br /><a href="#ideas-anorsich" title="Ideas, Planning, & Feedback">🤔</a> <a href="#review-anorsich" title="Reviewed Pull Requests">👀</a></td>
+  </tr>
+</table>
+
 <!-- ALL-CONTRIBUTORS-LIST:END -->
 
 This project follows the [all-contributors](https://github.com/kentcdodds/all-contributors) specification. Contributions of any kind welcome!
